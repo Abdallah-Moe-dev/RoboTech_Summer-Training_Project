@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SESB</title>
+    <style>
+        *{padding:0;margin:0;box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;scroll-behavior:smooth;}
+        main{width:100%;min-height:300px;}
+        header{width:100%;height:800px;background-color:rgb(255, 110, 110);}
+        .webName{color:white;font-size:xxx-large;margin-left:15px;line-height:50px;float:left;}
+        header ul {list-style:none;padding:0;margin:0;float:right;color:white;margin:auto;}
+        header ul li { width:150px;height:50px;text-align: center;line-height:50px;float:left;position:relative;}
+        header ul li a{text-decoration: none;color: white;}
+        header ul li:hover {background-color:#fb8080d5;}
+        .dropdown::after {content:'\25BC';margin-left:2px;font-size:small;}
+        header .submenu {display:none;position:absolute;top:100%;left:0;width:150px;background-color:#f59c9c;}
+        .form-control{display:block;width:100%;height:calc(1.5em+0.75rem+2px);border:1px solid #ced4da;}
+        button{ border:1px solid transparent #007bff;color:#fff;background-color:rgb(255, 110, 110);padding: .5rem 1rem;font-size:1.25rem;line-height:1,5;border-radius:0.3rem;}
+        .form-signin{width:50%;margin:auto;padding: 15px;}
+        .form-signin h1{text-align:center;}
+        header .dropdown:hover .submenu {display:block;}
+        hr{height: 1px;background-color: #e6e6e6;border: none;}
+        .intro{color:white;font-size:75px;text-align:center;margin-top:180px;}
+        .aboutUs{min-height:300px;width:100%;padding-left:180px;padding-top:60px;color:white;background-color:black;position:relative;}
+        .aboutUs h1{font-size:xx-large;}
+        .aboutUs p{width: 50%;}
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <p class="webName"><strong>SESB</strong></p>
+            <ul>
+                <li><a href="https://drive.usercontent.google.com/download?id=1RiYno3atkIBqN6jHX2usEG-_H-nXv_VT&export=download&authuser=0&confirm=t&uuid=d74921f9-7fe0-43cc-b18e-13e54ce263f6&at=APZUnTUKXTRTmZxTcHDfRCk_8VQP:1694434261590" target="_blank">Download App</a></li>
+                <li><a href="#about">About</a></li>
+                <li class="dropdown"><a href="#">Feature</a>
+                    <ul class="submenu">
+                        <li><a href="#">Feature1</a></li>
+                        <li><a href="#">Feature2</a></li>
+                        <li><a href="#">Feature3</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://192.168.1.1/" target="_blank">WiFi-Settings</a></li>
+            </ul>
+            <div class="clear"></div>
+            <hr>
+            <p class="intro">Welcome To <br>
+                Smart Electric Switch Board <br> Setup</p>
+        </header>
+        <div class="clear"></div>
+        <div class="form-signin">
+            <form action="/" method="post">
+                <h1>Connect Smart Plug to your WiFi</h1>
+                <br>
+                <div class="form-floating">
+                    <label>SSID</label><input type="text" class="form-control" name="ssid" >
+                </div>
+                <div class="form-floating">
+                    <br>
+                    <label>Password</label><input type="text" class="form-control" name="password">
+                </div>
+                <br><br>
+                <button type="submit">Connect</button>
+            </form>
+        </div>
+        <section class="aboutUs" id="about">
+            <h1>ABOUT US</h1>
+            <br>
+            <p>This project is the graduation project of Team 5 of the Robotech Summer Training 2023 at <br> the Faculty of Computing and Information, Ain Shams University
+            <br><br> Team members : Shady atef  , Ahmed Ibrahim , Ali Ashraf , Abdullah mohamed , Abdelrahman Mohamed , Ali Amgad , Omar Amgad , Ibrahim Mohammed</p>
+        </section>
+    </main>
+</body>
+</html>
