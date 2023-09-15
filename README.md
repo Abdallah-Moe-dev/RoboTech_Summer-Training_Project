@@ -6,7 +6,7 @@ This repository was established during the course of the RoboTech project as par
 ### I want to extend my gratitude to my amazing teammates for their dedication and hard work. 
 [Ali Amgad](https://github.com/aliamgad)
 
-[IBrahemelyamany](https://github.com/IBrahemelyamany)
+[IBrahem Mohamed](https://github.com/IBrahem-Elyamany)
 
 [Shady Atef](https://github.com/shady-ateff)
 
