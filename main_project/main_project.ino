@@ -29,9 +29,10 @@ NTPClient timeClient(ntpUDP, "pool.ntp.org" , + 3*60*60); //3*60*60 cairo zone
 ESP8266WebServer    server(80);
 
 String msgAr = "" ;
-char * timerSTR;
+String timerSTR;
 
-long long int timer , timer1 , timer2 , timer3 , timer4 , mm ;
+unsigned long timer1 , timer2 , timer3 , timer4 , mm ;
+bool timer1_state = 0, timer2_state = 0, timer3_state = 0, timer4_state = 0 ;
 
 const char* mqtt_Server = "broker.mqtt-dashboard.com";
 
@@ -111,7 +112,7 @@ void setup() {
     client.setServer(mqtt_Server, 1883);
     client.setCallback(callback);
     timel= millis();
-    timer= millis();
+    //timer= millis();
   }
 
   Display.displayClear();
@@ -280,12 +281,15 @@ void callback(char* topic, byte* payload, unsigned int length) {
       Serial.print((char)payload[i]);
       timerSTR+=(char)payload[i];
     }
-    mm = atol(timerSTR);
+    mm = timerSTR.toInt();
     Serial.println();
+    Serial.println(mm);
     if ((char)payload[0] == '0') {
-      timer1 = 0;
+      timer1_state = 0 ;
     } else {
-      timer1 = timer + mm;
+      timer1 = millis() + mm;
+      Serial.println(timer1);
+      timer1_state = 1 ;
     }
   }
   else if ( strstr(topic, "timer2"))
@@ -295,12 +299,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
       Serial.print((char)payload[i]);
       timerSTR+=(char)payload[i];
     }
-    mm = atol(timerSTR);
+    mm = timerSTR.toInt();
     Serial.println();
     if ((char)payload[0] == '0') {
-      timer2 = 0;
+      timer2_state = 0 ;
     } else {
-      timer2 = timer + mm;
+      timer2 = millis() + mm;
+      timer2_state = 1 ;
     }
   }
   else if ( strstr(topic, "timer3"))
@@ -310,12 +315,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
       Serial.print((char)payload[i]);
       timerSTR+=(char)payload[i];
     }
-    mm = atol(timerSTR);
+    mm = timerSTR.toInt();
     Serial.println();
     if ((char)payload[0] == '0') {
-      timer3 = 0;
+      timer3_state = 0 ;
     } else {
-      timer3 = timer + mm;
+      timer3 = millis() + mm;
+      timer3_state = 1 ;
     }
   }
   else if ( strstr(topic, "timer4"))
@@ -325,12 +331,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
       Serial.print((char)payload[i]);
       timerSTR+=(char)payload[i];
     }
-    mm = atol(timerSTR);
+    mm = timerSTR.toInt();
     Serial.println();
     if ((char)payload[0] == '0') {
-      timer4 = 0;
+      timer4_state = 0 ;
     } else {
-      timer4 = timer + mm;
+      timer4 = millis() + mm;
+      timer4_state = 1 ;
     }
   }
   else
@@ -518,20 +525,24 @@ String liveClock(){
 }
 
 void set_the_timer(){
-  if( timer >= timer1 && timer1 != 0 ){
+  if( millis() >= timer1 && timer1_state == 1 ){
     digitalWrite(Relay_Led_1, LOW);
+    timer1_state = 0;
     Relay1_state = 0;
   }
-  if( timer >= timer2 && timer2 != 0 ){
+  if( millis() >= timer2 && timer2_state == 1 ){
     digitalWrite(Relay_Led_2, LOW);
+    timer2_state = 0;
     Relay2_state = 0;
   }
-  if( timer >= timer3 && timer3 != 0 ){
+  if( millis() >= timer3 && timer3_state == 1 ){
     digitalWrite(Relay_Led_3, LOW);
+    timer3_state = 0;
     Relay3_state = 0;
   }
-  if( timer >= timer4 && timer4 != 0 ){
+  if( millis() >= timer4 && timer4_state == 1 ){
     digitalWrite(Relay_Led_4, LOW);
+    timer4_state = 0;
     Relay4_state = 0;
   }
 }
